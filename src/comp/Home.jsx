@@ -1,34 +1,77 @@
-import React from 'react';
+import React, { useState } from "react";
 import "./Home.css";
 import Done from "./Done.jsx";
+import OptionTwo from "./Option2/OptionTwo";
 
+const wstyle = {
+  TextDecoder: "none",
+  backgroundColor: "green",
+  width: "2000px",
+  padding: "0",
+};
 
-const wstyle={
-   
-   TextDecoder:"none",
-    backgroundColor:"green",
-   width:"2000px",
-   padding:"0"
-   
-}
+function Home() {
+  const [inputValue, setInputValue] = useState("");
+  const [inputValue2, setInputValue2] = useState("");
 
-function Home (){
-return<>
-    <center >
-    <h1>Decision Helper</h1>
-    <div className='container mainPage'style={wstyle}>
-    <div className='row'>
-    <div className='col-md-6 Dtwocol'>
-    <center><h1 className='Dname'>Decision one</h1>
-        </center><Done className="Done1"/>
+  const handleInputOne = (e) => {
+    setInputValue(e.target.value);
+  };
+  const handleInputTwo = (e) => {
+    setInputValue2(e.target.value);
+  };
 
+  return (
+    <>
+      <center>
+        <h2>Welcome</h2>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputOne}
+          placeholder="Type something..."
+          style={{
+            padding: "10px",
+            width: "300px",
+            marginBottom: "10px",
+            fontSize: "16px",
+          }}
+        />
+
+        <br />
+        <input
+          type="text"
+          value={inputValue2}
+          onChange={handleInputTwo}
+          placeholder="Type something..."
+          style={{
+            padding: "10px",
+            width: "300px",
+            marginBottom: "10px",
+            fontSize: "16px",
+          }}
+        />
+
+        <h1>Decision Helper</h1>
+        <div className="container mainPage" style={wstyle}>
+          <div className="row">
+            <div className="col-md-6 Dtwocol">
+              <center>
+                <h1 className="Dname">{inputValue}</h1>
+              </center>
+              <Done className="Done1" />
+            </div>
+            <div className="col-md-6 Dtwocol">
+              <center>
+                {" "}
+                <h1 className="Dname">{inputValue2}</h1>
+              </center>
+              <OptionTwo />
+            </div>
+          </div>
         </div>
-     <div className='col-md-6 Dtwocol'>
-     <center> <h1 className='Dname'>Decision two</h1></center>
-    </div>
-    </div>
-    </div></center>
-    
-</>
+      </center>
+    </>
+  );
 }
 export default Home;

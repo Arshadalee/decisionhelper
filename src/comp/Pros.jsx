@@ -1,26 +1,29 @@
-import {React} from 'react';
-import Points from './Points';
-import Reason from './Reason';
-import TotalCal from './TotalCal';
+import { React, useState } from "react";
+import Points from "./Points";
+import Reason from "./Reason";
+import TotalCal from "./TotalCal";
 
-const points={
-    marginRight: 0,
-}
-function Pros(){
 
-    
+function Pros() {
+    const [childData, setChildData] = useState("");
 
-    return <>
-<div className="container ProsCol">
-<div className="row">
-    
-    <div className="col-md-10">
-    <Reason/>
-    </div>
-    <div className="col-md-2"><Points style={points}/></div>
-   
-</div>
-</div>
+    const handleDataFromChild = (data) => {
+      setChildData(data);
+    };
+  return (
+    <>
+      <div className="container ProsCol">
+        <div className="row">
+          <div className="col-md-10">
+            <Reason />
+            <strong>{childData}</strong>
+          </div>
+          <div className="col-md-2">
+            <Points  sendDataToParent={handleDataFromChild} />
+          </div>
+        </div>
+      </div>
     </>
+  );
 }
 export default Pros;

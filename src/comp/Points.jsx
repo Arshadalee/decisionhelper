@@ -1,4 +1,4 @@
-import {React,useState} from 'react';
+import {React,useState,useContext, createContext} from 'react';
 import TotalCal from './TotalCal';
 
 
@@ -21,24 +21,26 @@ const dist={
     marginRight:0,
 
 }
-function Points(){
-    const[point1,setPoint1]=useState();
-    const[point2,setPoint2]=useState();
-    const[point3,setPoint3]=useState();
-    const[point5,setPoint5]=useState();
-    const[point4,setPoint4]=useState();
+export const AppContext = createContext();
+function Points({ sendDataToParent }){
+    const[point1,setPoint1]=useState(0);
+    const[point2,setPoint2]=useState(0);
+    const[point3,setPoint3]=useState(0);
+    const[point5,setPoint5]=useState(0);
+    const[point4,setPoint4]=useState(0);
     
-    const[total,setTotal]=useState([]);
-
+    const[total,setTotal]=useState(0);
+    
     function TotalPointsDone(){
         setTotal(point1+point2+point3+point4+point5);
-        
+        sendDataToParent(total);
         return total;
     };
-
+    
+      
     
     
-    return<>
+    return<> <AppContext.Provider value={{ total, setTotal }}>
 
     <input placeholder='Rating' type='number' value={point1} onChange={(e)=>setPoint1(+e.target.value)} style={dist1}/>
     <input placeholder='Rating' type='number' value={point2} onChange={(e)=>setPoint2(+e.target.value)}style={dist}/>
@@ -53,6 +55,7 @@ function Points(){
 </button>
 
 <TotalCal tdata={total}/>
+</AppContext.Provider>
 
     </>
     }

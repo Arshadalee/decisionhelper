@@ -66,7 +66,7 @@ function Home() {
                 {" "}
                 <h1 className="Dname">{inputValue2}</h1>
               </center>
-              <OptionTwo />
+              <OptionTwo className="Done1" />
             </div>
           </div>
         </div>

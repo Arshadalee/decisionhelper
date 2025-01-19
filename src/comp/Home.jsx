@@ -11,9 +11,12 @@ const wstyle = {
 };
 
 function Home() {
-  const [inputValue, setInputValue] = useState("");
-  const [inputValue2, setInputValue2] = useState("");
-
+  const [inputValue, setInputValue] = useState(0);
+  const [inputValue2, setInputValue2] = useState(0);
+  const [doneResult, setDoneResult] = useState(0);
+  const [optionTwoResult, setOptionTwoResult] = useState(0);
+  const [trigger, setTrigger] = useState(true);
+  
   const handleInputOne = (e) => {
     setInputValue(e.target.value);
   };
@@ -59,14 +62,19 @@ function Home() {
               <center>
                 <h1 className="Dname">{inputValue}</h1>
               </center>
-              <Done className="Done1" />
+              
+              <Done 
+              trigger={trigger} setTrigger={setTrigger}
+              className="Done1" segment={inputValue} setDoneResult={setDoneResult}/>
             </div>
             <div className="col-md-6 Dtwocol">
               <center>
                 {" "}
                 <h1 className="Dname">{inputValue2}</h1>
               </center>
-              <OptionTwo className="Done1" />
+              <OptionTwo
+              trigger={trigger} setTrigger={setTrigger}
+              className="Done1" segment={inputValue2} setOptionTwoResult={setOptionTwoResult}/>
             </div>
           </div>
         </div>

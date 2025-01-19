@@ -1,25 +1,25 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Points from "./Points";
 import Reason from "./Reason";
 import TotalCal from "./TotalCal";
 
 
-function Pros() {
-    const [childData, setChildData] = useState("");
+function Pros({segmentResult, setTrigger, setSegmentResult}) {
+    const [addition, setAddition] = useState(0);
+  useEffect(()=>{
+    setSegmentResult({ ...segmentResult,prosAddition: addition})
+  },[addition])
 
-    const handleDataFromChild = (data) => {
-      setChildData(data);
-    };
   return (
     <>
       <div className="container ProsCol">
         <div className="row">
           <div className="col-md-10">
             <Reason />
-            <strong>{childData}</strong>
+            <strong>{addition}</strong>
           </div>
           <div className="col-md-2">
-            <Points  sendDataToParent={handleDataFromChild} />
+            <Points  prosAddition={setAddition} setTrigger={setTrigger}/>
           </div>
         </div>
       </div>
